@@ -47,7 +47,7 @@ joinRoomBtn.addEventListener('click', () => {
     window.location.href = `room.html?roomId=${roomId}&playerName=${encodeURIComponent(playerName)}`;
 });
 
-// Настройки Firebase
+// Инициализация Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAXrw5CFG8__XFaan7alayoPhn5-j-N7Cw",
     authDomain: "bunker-513cb.firebaseapp.com",
@@ -57,11 +57,56 @@ const firebaseConfig = {
     messagingSenderId: "322012142747",
     appId: "1:322012142747:web:994e48a49c191ff3133a3e"
 };
-
-// Инициализация Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+// Переменные для хранения состояния игры
+let playerName = '';
+let roomId = '';
+
+// Элементы DOM
+const playerNameInput = document.getElementById('playerName');
+const roomIdInput = document.getElementById('roomIdInput');
+const joinRoomBtn = document.getElementById('joinRoomBtn');
+
+// Обработчик события для кнопки подключения к комнате
+joinRoomBtn.addEventListener('click', () => {
+    playerName = playerNameInput.value;
+    roomId = roomIdInput.value;
+    if (!playerName || !roomId) {
+        alert('Пожалуйста, введите ваше имя и ID комнаты');
+        return;
+    }
+    alert(`Вы подключились к комнате: ${roomId}`);
+
+    // Отправка данных о игроке в Firebase
+    database.ref(`rooms/${roomId}/players`).push({ name: playerName });
+
+    // Слушать изменения в комнате
+    listenForPlayers(roomId);
+});
+
+// Функция для получения данных о других игроках
+function listenForPlayers(roomId) {
+    database.ref(`rooms/${roomId}/players`).on('value', (snapshot) => {
+        const players = snapshot.val();
+        updatePlayersList(players);
+    });
+}
+
+// Функция для обновления списка игроков
+function updatePlayersList(players) {
+    const playersList = document.getElementById('playersList');
+    playersList.innerHTML = ''; // Очистить предыдущий список
+
+    if (players) {
+        Object.values(players).forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.textContent = player.name; // Отобразить имя игрока
+            playersList.appendChild(playerElement);
+        });
+    }
+}
 
 // Отображение списка комнат
 function displayRooms() {
