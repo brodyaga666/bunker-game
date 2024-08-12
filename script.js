@@ -1,3 +1,32 @@
+// Обработчик события для кнопки подключения к комнате
+joinRoomBtn.addEventListener('click', () => {
+    playerName = playerNameInput.value;
+    roomId = roomIdInput.value;
+    if (!playerName || !roomId) {
+        alert('Пожалуйста, введите ваше имя и ID комнаты');
+        return;
+    }
+    alert(`Вы подключились к комнате: ${roomId}`);
+
+    // Отправка данных о игроке в Firebase
+    database.ref(`rooms/${roomId}/players`).push({ name: playerName });
+
+    // Слушать изменения в комнате
+    listenForPlayers(roomId);
+});
+function updatePlayersList(players) {
+    const playersList = document.getElementById('playersList');
+    playersList.innerHTML = ''; // Очистить предыдущий список
+
+    if (players) {
+        Object.values(players).forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.textContent = player.name; // Отобразить имя игрока
+            playersList.appendChild(playerElement);
+        });
+    }
+}
+
 // Переменные для хранения состояния игры
 let playerName = '';
 let roomId = '';
