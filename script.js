@@ -49,13 +49,13 @@ joinRoomBtn.addEventListener('click', () => {
 
 // Настройки Firebase
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAXrw5CFG8__XFaan7alayoPhn5-j-N7Cw",
+    authDomain: "bunker-513cb.firebaseapp.com",
+    databaseURL: "https://bunker-513cb-default-rtdb.firebaseio.com",
+    projectId: "bunker-513cb",
+    storageBucket: "bunker-513cb.appspot.com",
+    messagingSenderId: "322012142747",
+    appId: "1:322012142747:web:994e48a49c191ff3133a3e"
 };
 
 // Инициализация Firebase
