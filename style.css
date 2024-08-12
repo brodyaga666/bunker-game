@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+#cardsContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    width: 140px;
+    height: 200px;
+}
+
+#tableContainer {
+    margin-top: 30px;
+}
+
+#gameTable {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
