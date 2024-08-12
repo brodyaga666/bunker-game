@@ -47,6 +47,22 @@ joinRoomBtn.addEventListener('click', () => {
     window.location.href = `room.html?roomId=${roomId}&playerName=${encodeURIComponent(playerName)}`;
 });
 
+// Настройки Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Инициализация Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+
 // Отображение списка комнат
 function displayRooms() {
     roomsList.innerHTML = ''; // Очистить предыдущий список
